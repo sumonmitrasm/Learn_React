@@ -19,12 +19,12 @@ export default class Nav extends Component {
                     <Link class="nav-link" to="#">Profile</Link>
                     </li>
                     <li class="nav-item">
-                    <Link class="nav-link disabled">Disabled</Link>
+                    <Link class="nav-link">Disabled</Link>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <Link class="nav-link" to="/login">Login</Link>&nbsp;&nbsp;
-                    <Link class="nav-link" href="#">Register</Link>
+                    <Link class="nav-link" to="/register">Register</Link>
                 </form>
                 </div>
             </div>
