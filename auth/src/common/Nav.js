@@ -13,13 +13,13 @@ export default class Nav extends Component {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <Link class="nav-link active" aria-current="page" to="#">Home</Link>
+                    <Link class="nav-link active" aria-current="page" to="/">Home</Link>
                     </li>
                     <li class="nav-item">
-                    <Link class="nav-link" to="#">Profile</Link>
+                    <Link class="nav-link" to="/profile">Profile</Link>
                     </li>
                     <li class="nav-item">
-                    <Link class="nav-link">Disabled</Link>
+                    <Link class="nav-link" to="#">Disabled</Link>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
