@@ -7,8 +7,8 @@ use Auth;
 use DB;
 use Laravel\Passport\HasApiTokens;
 use App\Models\User;
-use Validator;
 use Illuminate\Support\Facades\Hash;
+use Validator;
 class AuthController extends Controller
 {
     public function login(Request $request){
@@ -23,22 +23,46 @@ class AuthController extends Controller
         }
         return response([
             'message' =>'InvalidEmail or Password'
-        ],401);  
+        ],401);
     }
     public function register(Request $request) {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-    
-        $token = $user->createToken('email')->accessToken;
-    
-        return response([
-            'message' => 'Successfully Register',
-            'user' => $user,
-            'token' => $token, // Include the token in the response
-        ], 201); // Use status code 201 for resource creation success
+        if($request->isMethod('post')){
+        $data = $request->input();
+        //echo"<pre>";print_r($data);die;
+        $rules = [
+            "name"=> "required",
+            "email"=> "required|email|unique:users",
+            "password"=> "required"
+         ];
+        $customMessages = [
+        'email.required' => 'Email is required',
+        'email.email'=>'valid email is required',
+        'email.unique'=>'Email Already exist in database',
+        'password.required' => 'pass word required',
+        ];
+
+        $validator = Validator::make($data,$rules,$customMessages);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(),422);
+        }
+            // $apiToken = Str::random(60);
+            $user = new User;
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->password = bcrypt($data['password']);
+            // $user->access_token = $apiToken;
+            $user->save();
+            if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
+                $user = User::where('email',$data['email'])->first();
+                //echo"<pre>"; print_r(Auth::user());die;
+                $accessToken = $user->createToken($data['email'])->accessToken;
+                //echo"<pre>"; print_r($accessToken);die;
+                User::where('email',$data['email'])->update(['access_token'=>$accessToken]);
+                return response()->json(['status'=>true,'message'=>'Data save successfully!'],201);
+            }else{
+                return response()->json(['status'=>false,'message'=>'Data does not save!'],422);
+            }
+            
+        }
     }
-    
 }

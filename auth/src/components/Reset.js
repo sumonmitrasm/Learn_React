@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-
-export default class Register extends Component {
+export default class Reset extends Component {
   render() {
     return (
       <div>
@@ -12,21 +11,16 @@ export default class Register extends Component {
                     <form>
                         <h2 className="text-center">Register Page</h2>
                         <div className="mb-3">
-                            <label htmlFor="name" className="form-label">User Name</label>
-                            <input type="text" name="name" className="form-control" id="name" aria-describedby="name"/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email address</label>
-                            <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp"/>
-                            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                            <label htmlFor="name" className="form-label">Pincode</label>
+                            <input type="text" name="pincode" className="form-control" id="pincode" aria-describedby="pincode"/>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="password" className="form-label">Password</label>
                             <input type="password" name="password" className="form-control" id="password"/>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="password" className="form-label">Confirm Password</label>
-                            <input type="password" name="confirmpassword" className="form-control" id="confirmpassword"/>
+                            <label htmlFor="password" className="form-label">New Password</label>
+                            <input type="password" name="newmpassword" className="form-control" id="newmpassword"/>
                         </div>
                         <div className="mb-3 form-check">
                             <input type="checkbox" className="form-check-input" name='checkbox' id="checkbox"/>

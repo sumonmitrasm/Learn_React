@@ -6,6 +6,7 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import Forgot from '../components/Forgot';
 import Profile from '../components/Profile';
+import Reset from '../components/Reset';
 
 export default class Header extends Component {
   render() {
@@ -16,6 +17,8 @@ export default class Header extends Component {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
+            {/* reset password */}
+          <Route path="/reset" element={<Reset />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot" element={<Forgot />} />
