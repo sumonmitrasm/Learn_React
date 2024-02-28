@@ -19,7 +19,7 @@ class AuthController extends Controller
                 'message'=>"Successfully",
                 'token'=>$token,
                 'user'=>$user
-            ],400);
+            ],200);
         }
         return response([
             'message' =>'InvalidEmail or Password'
