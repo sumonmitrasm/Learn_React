@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 
 export default class Profile extends Component {
   render() {
+    let name;
+    let email;
+    if(this.props.user){
+      name=this.props.user.name;
+      email=this.props.user.email;
+    }
     return (
       <div>
         <div className="container">
@@ -11,8 +17,8 @@ export default class Profile extends Component {
                    <h3>My Profile</h3>
                    <ul className='list'>
                     <li className='list-item'>User Details</li>
-                    <li className='list-item'>Name: Sumon Mitra</li>
-                    <li className='list-item'>Email: sumonmitrasm@gmail.com</li>
+                    <li className='list-item'>Name: {name}</li>
+                    <li className='list-item'>Email: {email}</li>
                    </ul>
                   </div>
               </div>

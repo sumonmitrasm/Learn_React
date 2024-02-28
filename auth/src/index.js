@@ -7,6 +7,7 @@ import Header from './common/Header';
 import axios from 'axios';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+axios.defaults.headers.common['Authorization']='Bearer '+ localStorage.getItem('token')
 root.render(
   <React.StrictMode>
     <Header />

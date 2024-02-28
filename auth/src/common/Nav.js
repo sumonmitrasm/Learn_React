@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 export default class Nav extends Component {
+  
   render() {
     return (
       <div>

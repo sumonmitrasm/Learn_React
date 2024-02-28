@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 export default class Login extends Component {
-  state={
-    email:"",
-    password:"",
-    message:""
+  constructor(props) {
+    super(props);
+    this.state = {
+      email:"",
+      password:"",
+      message:"",
+      loggedIn: false // Initialize loggedIn state
+    };
   }
   //after form aubmit
   formSubmit = (e) =>{
@@ -16,13 +21,20 @@ export default class Login extends Component {
     }
     axios.post('/api/login',data)
    .then((response)=>{
-    console.log(response);
+    localStorage.setItem('token',response.data.token);
+    this.setState({
+      loggedIn:true
+    })
+    this.props.setUser(response.data.user);
    })
    .catch((error)=>{
     console.log(error);
    })
   }
   render() {
+    if (this.state.loggedIn) {
+      return <Navigate to="/profile" />;
+    }
     return (
       <div>
         <div class="container">
